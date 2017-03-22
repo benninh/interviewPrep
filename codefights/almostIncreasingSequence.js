@@ -24,6 +24,49 @@
 // [output] boolean
 
 // Return true if it is possible to remove one element from the array in order to get a strictly increasing sequence, otherwise return false.
+
+function almostIncreasingSequence(sequence) {
+  var len = sequence.length;
+  var count = 0;
+  for (var i = 0; i < len; i++) {
+    if (sequence[i] >= sequence[i + 1] || sequence[i] <= sequence[i-1]) {
+      var temp = sequence.slice(0, i).concat(sequence.slice(i + 1));
+      if (increasingSequence(temp)) {
+      return true;
+      }
+    }
+  }
+  return false;
+}
+
+function increasingSequence(sequence) {
+  var len = sequence.length;
+  for (var i = 0; i < len - 1; i++) {
+    if (sequence[i] >= sequence[i + 1]) return false;
+  }
+  return true;
+}
+
+var sequence;
+sequence = [1, 3, 2, 1];
+console.log(almostIncreasingSequence(sequence), ' should be false');
+sequence = [1, 3, 2];
+console.log(almostIncreasingSequence(sequence), ' should be true');
+sequence = [1, 2, 3, 4, 3, 6];
+console.log(almostIncreasingSequence(sequence), ' should be true');
+sequence = [1, 4, 10, 4, 2];
+console.log(almostIncreasingSequence(sequence), ' should be false');
+sequence = [10, 1, 2, 3, 4, 5];
+console.log(almostIncreasingSequence(sequence), ' should be true');
+sequence = [1, 2, 3, 4, 99, 5, 6];
+console.log(almostIncreasingSequence(sequence), ' should be true');
+sequence = [1, 2, 1, 2];
+console.log(almostIncreasingSequence(sequence), ' should be false');
+sequence = [1, 4, 2, 3, 4];
+console.log(almostIncreasingSequence(sequence), ' should be true');
+
+// implementation should be faster than the 25/26 one, but apparently it isn't
+/*
 function almostIncreasingSequence(sequence) {
   var current, next, previous;
   
@@ -58,22 +101,8 @@ function almostIncreasingSequence(sequence) {
 
   return false;
 }
+*/
 
-
-var sequence = [1, 3, 2, 1];
-console.log(almostIncreasingSequence(sequence), ' should be false'); // false;
-sequence = [1, 3, 2];
-console.log(almostIncreasingSequence(sequence), ' should be true'); // true;
-sequence = [1, 2, 3, 4, 3, 6];
-console.log(almostIncreasingSequence(sequence), ' should be true'); // true;
-sequence = [1, 4, 10, 4, 2];
-console.log(almostIncreasingSequence(sequence), ' should be false'); // false;
-sequence = [10, 1, 2, 3, 4, 5];
-console.log(almostIncreasingSequence(sequence), ' should be true'); // true;
-sequence = [1, 2, 3, 4, 99, 5, 6];
-console.log(almostIncreasingSequence(sequence), ' should be true');
-sequence = [1, 2, 1, 2];
-console.log(almostIncreasingSequence(sequence), ' should be false'); // false;
 
 
 //implementation that finishes 25/26 tests in codefights
