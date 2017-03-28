@@ -40,3 +40,7 @@ function allLongestStrings(inputArray) {
 
 var inputArray = ["aba", "aa", "ad", "vcd", "aba"];
 console.log(allLongestStrings(inputArray));
+
+
+console.log('TEST');
+console.log(JSON.parse("'<h1>hello</h1>'"));
