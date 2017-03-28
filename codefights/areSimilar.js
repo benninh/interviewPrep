@@ -48,6 +48,24 @@ function areSimilar(A, B) {
   if (!containsSameValues(A, B)) {
     return false;
   }
+
+  if (arraysAreEqual(A,B)) {
+    return true;
+  }
+
+  var temp = null;
+  var count = 0;
+
+  for (var i = 0; i < A.length; i++) {
+    if (A[i] !== B[i]) {
+      count++;
+      if (count > 2) {
+        return false;
+      }
+    }
+  }
+
+  return true;
 }
 
 function arraysAreEqual(A, B) {
@@ -84,7 +102,10 @@ function containsSameValues(A, B) {
 
   return true;
 }
-var A = [1, 2, 3];
-var B = [1, 2, 3];
-console.log(areSimilar(A, B));
-console.log(arraysAreEqual(A, B))
+
+var A = [2, 2, 3, 1, 1, 3, 4];
+var B = [1, 2, 3, 1, 2, 4, 3];
+console.log(areSimilar(A, B)); // false
+var A = [2, 2, 3, 1, 1];
+var B = [1, 2, 3, 1, 2];
+console.log(areSimilar(A, B)); // true
