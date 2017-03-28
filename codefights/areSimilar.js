@@ -45,6 +45,26 @@ true if A and B are similar, false otherwise.
 */
 
 function areSimilar(A, B) {
+  if (!containsSameValues(A, B)) {
+    return false;
+  }
+}
+
+function arraysAreEqual(A, B) {
+  if (A.length !== B.length) {
+    return false;
+  }
+
+  for (var i = 0; i < A.length; i++) {
+    if (A[i] !== B[i]) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function containsSameValues(A, B) {
   var aKeys = A.reduce(function(acc, ele) {
     acc[ele] = acc[ele] || 0;
     acc[ele]++;
@@ -64,7 +84,7 @@ function areSimilar(A, B) {
 
   return true;
 }
-
 var A = [1, 2, 3];
 var B = [1, 2, 3];
 console.log(areSimilar(A, B));
+console.log(arraysAreEqual(A, B))
