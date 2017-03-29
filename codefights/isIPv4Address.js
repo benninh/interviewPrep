@@ -37,6 +37,9 @@ true if inputString satisfies the IPv4 address naming rules, false otherwise.
 
 function isIPv4Address(inputString) {
   var numbers = inputString.split('.');
+  if (numbers.length !== 4) {
+    return false;
+  }
   return numbers.reduce(function(acc, number, index) {
     if (!acc) {
       return acc;
